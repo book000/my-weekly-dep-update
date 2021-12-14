@@ -22,10 +22,9 @@ jobs:
       - name: Manage matrix
         id: manage-matrix
         run: |
-          action=${{ fromJson(matrix.action) }}
-          echo "::set-output name=repo::${ action.repo }"
-          echo "::set-output name=workflow_id::${ action.workflow_id }"
-          echo "::set-output name=ref::${ action.ref }"
+          echo "::set-output name=repo::${{ fromJson(matrix.action).repo }}"
+          echo "::set-output name=workflow_id::${{ fromJson(matrix.action).workflow_id }}"
+          echo "::set-output name=ref::${{ fromJson(matrix.action).ref }}"
 
       - name: Dispatch workflow
         run: |
