@@ -38,8 +38,7 @@ jobs:
     strategy:
       matrix:
         action:
-          - { repo: "book000/my-weekly-dep-update", workflow_id: "test.yml", ref: "main" }
-          # - '{ repo: "book000/my-weekly-dep-update", workflow_id: "test.yml", ref: "main" }'
+          - '{ repo: "book000/my-weekly-dep-update", workflow_id: "test.yml", ref: "main" }'
           # - { repo: "jaoafa/jaoweb-users", workflow_id: "dependencies-update.yml", ref: "master" }
 
     steps:
@@ -49,11 +48,6 @@ jobs:
       - name: Manage matrix
         id: manage-matrix
         run: |
-          echo "${{ matrix.action }}"
-          echo "${{ matrix.action.repo }}"
-          echo "${{ matrix.action.workflow_id }}"
-          echo "${{ matrix.action.ref }}"
-
           echo "::set-output name=repo::${{ fromJson(matrix.action).repo }}"
           echo "::set-output name=workflow_id::${{ fromJson(matrix.action).workflow_id }}"
           echo "::set-output name=ref::${{ fromJson(matrix.action).ref }}"
