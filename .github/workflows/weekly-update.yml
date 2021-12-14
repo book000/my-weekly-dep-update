@@ -1,0 +1,36 @@
+name: Request dependencies update at every week
+
+on:
+  schedule:
+    - cron: "0 0 * * 5" # 毎週金曜 09:00 JST
+  workflow_dispatch:
+
+jobs:
+  request-dep-update:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        action:
+          - { repo: "book000/my-weekly-dep-update", workflow_id: "test.yml", ref: "main" }
+          # - { repo: "jaoafa/jaoweb-users", workflow_id: "dependencies-update.yml", ref: "master" }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Manage matrix
+        id: manage-matrix
+        run: |
+          action=${{ fromJSON(matrix.action) }}
+          echo "::set-output name=repo::${{ action.repo }}"
+          echo "::set-output name=workflow_id::${{ action.workflow_id }}"
+          echo "::set-output name=ref::${{ action.ref }}"
+
+      - name: Dispatch workflow
+        run: |
+          curl \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+            https://api.github.com/repos/${{ steps.manage-matrix.outputs.repo }}/actions/workflows/${{ steps.manage-matrix.outputs.workflow_id }}/dispatches \
+            -d "{ \"ref\": \"${{ steps.manage-matrix.outputs.ref }}\" }"
