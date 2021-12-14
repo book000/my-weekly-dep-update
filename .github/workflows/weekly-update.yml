@@ -70,7 +70,7 @@ jobs:
         run: |
           echo "Workflow run URL: ${{ steps.get-workflow-runs.outputs.html_url }}"
           echo "Issue number: ${{ needs.create-issue.outputs.issue_number }}"
-          echo ${ toJSON(needs.create-issue.outputs)}
+          echo ${{ toJSON(needs.create-issue.outputs) }}
 
       - name: Comment to issue
         uses: peter-evans/create-or-update-comment@v1
