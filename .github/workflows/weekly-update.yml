@@ -71,9 +71,10 @@ jobs:
         with:
           issue-number: ${{ needs.create-issue.outputs.issue-number }}
           body: |
+            # `${{ steps.manage-matrix.outputs.repo }}`
+
             ${{ steps.get-workflow-runs.outputs.html_url }}
 
-            - Repo: `${{ steps.manage-matrix.outputs.repo }}`
             - Workflow: `${{ steps.manage-matrix.outputs.workflow_id }}`
             - Ref: `${{ steps.manage-matrix.outputs.ref }}`
 
