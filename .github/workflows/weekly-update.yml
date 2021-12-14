@@ -66,18 +66,10 @@ jobs:
           url="https://api.github.com/repos/${{ steps.manage-matrix.outputs.repo }}/actions/workflows/${{ steps.manage-matrix.outputs.workflow_id }}/runs?per_page=1"
           echo "::set-output name=html_url::$(curl -fsSL "$url" | jq -r '.workflow_runs[0].html_url')"
 
-      - name: Debug
-        run: |
-          echo "Workflow run URL: ${{ steps.get-workflow-runs.outputs.html_url }}"
-          echo "Issue number: ${{ needs.create-issue.outputs.issue_number }}"
-          echo '${{ toJSON(needs) }}'
-          echo '${{ toJSON(needs.create-issue) }}'
-          echo '${{ toJSON(needs.create-issue.outputs) }}'
-
       - name: Comment to issue
         uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{ needs.create-issue.outputs.issue_number }}
+          issue-number: ${{ needs.create-issue.outputs.issue-number }}
           body: |
             ${{ steps.get-workflow-runs.outputs.html_url }}
 
