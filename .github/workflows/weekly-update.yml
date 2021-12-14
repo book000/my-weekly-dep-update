@@ -38,8 +38,14 @@ jobs:
     strategy:
       matrix:
         action:
-          - '{ repo: "book000/my-weekly-dep-update", workflow_id: "test.yml", ref: "main" }'
-          # - { repo: "jaoafa/jaoweb-users", workflow_id: "dependencies-update.yml", ref: "master" }
+          - '{ repo: "jaoafa/jaoweb-users", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/jaoweb-bans", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/jaoweb-admin", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/jaoweb-admin-cp", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/jaotanChatLogger3", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/jaoweb-deploy", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/discord-new-threads", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/watch-emojis", workflow_id: "dependencies-update.yml", ref: "master" }'
 
     steps:
       - name: Checkout
