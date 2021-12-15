@@ -67,7 +67,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
             https://api.github.com/repos/${{ steps.manage-matrix.outputs.repo }}/actions/workflows/${{ steps.manage-matrix.outputs.workflow_id }}/dispatches \
-            -d "{ \"ref\": \"${{ steps.manage-matrix.outputs.ref }}\" }"
+            -d "{ \"ref\": \"${{ steps.manage-matrix.outputs.ref }}\", \"inputs\": { \"exec-from\": \"https://github.com/book000/my-weekly-dep-update/issues/${{ needs.create-issue.outputs.issue-number }}\" } }"
 
       - name: Get workflow runs
         id: get-workflow-runs
