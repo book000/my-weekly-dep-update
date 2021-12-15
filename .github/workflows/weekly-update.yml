@@ -26,6 +26,9 @@ jobs:
         with:
           assignees: "book000"
           title: "Weekly dependencies update - ${{ steps.date.outputs.date }}"
+          labels: "WeeklyDependUpdate"
+          close-previous: true
+          linked-comments: true
 
       - name: Output issue number
         run: |
