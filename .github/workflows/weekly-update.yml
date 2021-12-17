@@ -80,7 +80,7 @@ jobs:
         with:
           issue-number: ${{ needs.create-issue.outputs.issue-number }}
           body: |
-            # `${{ steps.manage-matrix.outputs.repo }}`
+            # [`${{ steps.manage-matrix.outputs.repo }}`](https://github.com/${{ steps.manage-matrix.outputs.repo }})
 
             ${{ steps.get-workflow-runs.outputs.html_url }}
 
