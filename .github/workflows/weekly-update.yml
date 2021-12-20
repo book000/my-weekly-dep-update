@@ -49,6 +49,7 @@ jobs:
           - '{ repo: "jaoafa/jaoweb-deploy", workflow_id: "dependencies-update.yml", ref: "master" }'
           - '{ repo: "jaoafa/discord-new-threads", workflow_id: "dependencies-update.yml", ref: "master" }'
           - '{ repo: "jaoafa/watch-emojis", workflow_id: "dependencies-update.yml", ref: "master" }'
+          - '{ repo: "jaoafa/node-jaotan", workflow_id: "dependencies-update.yml", ref: "master" }'
 
     steps:
       - name: Checkout
